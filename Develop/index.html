@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    
+    <title>Password Generator</title>
+
+    <script>
+    var lowerlist="abcdefghijklmnopqrstuvwxyz"
+    var nbrlist="123456789"
+    var speclist= "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
+    var upperlist= "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    var temp=''
+      function generatepass(plength){
+          // If x is Not a Number or less than one or greater than 10
+    
+        if (isNaN(plength) || plength < 8 || plength > 128) {
+           return text = "Input not valid";
+       } else {
+            text = "Input OK";
+        }
+      temp =''
+      for (i=0;i<plength;i++)
+      temp+=lowerlist.charAt(Math.floor(Math.random()*lowerlist.length))
+      i++
+      temp+=nbrlist.charAt(Math.floor(Math.random()*nbrlist.length))
+      i++
+      temp+=speclist.charAt(Math.floor(Math.random()*speclist.length))
+      i++
+      temp+=upperlist.charAt(Math.floor(Math.random()*upperlist.length))
+      return temp
+      }
+      
+      function populateform(enterlength){
+      document.pgenerate.output.value=generatepass(enterlength)
+      }
+     
+      </script>
+      
+      <form name="pgenerate">
+      <input type="text" size=18 name="output">
+      <input type="button" value="Generate Password" onClick="populateform(this.form.thelength.value)"><br />
+      <b>Password Length ---Between 8 and 128--- :</b> <input type="text" name="thelength" size=3 value="8">
+      </form>
+
+
+      <button onclick="copyFunction()">Copy to clipboard</button>
+      
+      <script>
+        function copyFunction() {
+          var dummy = document.createElement("textarea");
+          document.body.appendChild(dummy);
+          dummy.value = temp;
+          dummy.select();
+          document.execCommand("copy");
+          document.body.removeChild(dummy);
+          alert("Copied the text: " + dummy.value);
+        }
+        </script>
+        
+  </head>
+  <body>
+</html>
